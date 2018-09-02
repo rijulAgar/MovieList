@@ -24,8 +24,7 @@
 
       <li>
         
-          <input type="text" matInput  [(ngModel)]='searchVal' [matAutocomplete]="auto" placeholder="Search" style="color:white">
-        
+          <input type="text" matInput  [(ngModel)]='searchVal' [matAutocomplete]="auto" placeholder="Search">
         
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of data" [value]="option['movie_title']">{{option['movie_title']}}</mat-option>
