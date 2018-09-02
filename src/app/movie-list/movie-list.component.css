@@ -1,0 +1,39 @@
+.boxOuter{
+    padding: 20px
+}
+.boxInner{
+    border: 1px solid #bc0e0e;
+    padding: 15px;
+    border-bottom: 4px solid #bc0e0e;
+    border-right: 4px solid #bc0e0e;
+    border-radius: 40px
+}
+ul{
+    list-style: none;
+}
+li{
+    cursor: pointer;
+    
+}
+li:hover{
+    background: orangered;
+}
+
+nav>ul>li{
+    padding: 10px;
+    color: white;
+    display: inline-block;
+}
+nav{
+    background: #bc0e0e;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    margin: auto;
+}
+.yellow{
+    color: yellow;
+}
+.grey{
+    color: grey;
+}

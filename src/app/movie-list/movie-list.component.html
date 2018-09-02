@@ -1,0 +1,78 @@
+<nav>
+    <ul class="center">
+      <li><h3>MoviE VieweR</h3></li>
+      <li style="margin-left: 12%">
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item *ngFor="let ye of year" (click)="setFilter('title_year',ye)">{{ye}}</button>
+        </mat-menu>
+        <span  [matMenuTriggerFor]="appMenu">Year</span>
+      
+      </li>  
+      <li >
+        <div class="dropdown">
+          <span [matMenuTriggerFor]="appMenuCa">
+          Category
+          </span>
+          <mat-menu #appMenuCa="matMenu">
+            <button mat-menu-item *ngFor="let gen of genreArr" (click)="setFilter('genres',gen)">{{gen}}</button>
+          </mat-menu>
+        </div>
+      </li>
+      <li>
+        <span (click)="reset();">Show All</span>
+      </li>
+
+      <li>
+        
+          <input type="text" matInput  [(ngModel)]='searchVal' [matAutocomplete]="auto" placeholder="Search" style="color:white">
+        
+        
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of data" [value]="option['movie_title']">{{option['movie_title']}}</mat-option>
+        </mat-autocomplete>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </li>
+      <li>
+          <select [(ngModel)]='sortby'>
+            <option *ngFor="let sor of sortByArr" value="{{sor['value']}}">{{sor['option']}}</option>
+          </select>
+          
+      </li>
+      <li><span (click)="sortOrder= !sortOrder"><i class="fa" [class.fa-angle-up]="sortOrder" [class.fa-angle-down]="!sortOrder" style="color:white"></i></span></li>
+    
+    </ul> 
+      <!-- <div class="pull-right"><input type="text" [(ngModel)]='searchVal'><i class="fa fa-search" aria-hidden="true"></i>
+      </div> -->
+    
+</nav>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-8" style="margin-top:7%">
+          <div class="row">
+            <div class="col-md-12 boxOuter" *ngFor="let d of data|search:searchVal:key:filterval|sorting:sortby:sortOrder">
+              <div class="boxInner">
+               <div class="row">
+                  <div class="col-md-2">
+                      <img src="../../assets/popcorn.jpeg" style="width:120px;height:150px">   
+                  </div>
+                  <div class="col-md-7 col-md-offset-1">
+                      <h3>{{d['movie_title']}}</h3>
+                      <span class="grey">{{d['title_year']}}</span>
+                      <p><span class="grey">Artists:</span> {{d['actor_1_name']+' ,'+ d['actor_2_name']}}</p>
+                      <p><span class="grey">Category: </span>{{d['genres']}}</p>
+                      <i class="fa fa-star" [class.yellow]="true" aria-hidden="true"></i>
+                      <i class="fa fa-star" [class.yellow]="(d['movie_title'].length%5)>=2" aria-hidden="true"></i>
+                      <i class="fa fa-star" [class.yellow]="(d['movie_title'].length%5)>=3" aria-hidden="true"></i>
+                      <i class="fa fa-star" [class.yellow]="(d['movie_title'].length%5)>=4" aria-hidden="true"></i>
+                      <i class="fa fa-star" [class.yellow]="(d['movie_title'].length%5)>=5" aria-hidden="true"></i>
+                        
+                    </div>
+  
+               </div>               
+              </div>
+             </div>
+            </div>
+      </div>
+  </div>
+</div>
